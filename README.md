@@ -100,7 +100,7 @@ Chief_of_agents/
 
 ---
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### 1. Prerequisites
 
