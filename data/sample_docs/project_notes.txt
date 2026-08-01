@@ -1,0 +1,14 @@
+Project: Chief of Staff AI agent
+
+Goal: build a personal AI assistant that combines RAG over personal documents,
+a multi-agent orchestrator, voice input/output, and a multi-layer memory system
+(working, episodic, semantic, procedural).
+
+Current phase: Phase 1 — text-only orchestrator and RAG. Once this is stable,
+move to Phase 2 (tool-calling agents), then Phase 3 (memory layers), then
+Phase 4 (voice), then Phase 5 (proactive check-ins).
+
+Target audience for the portfolio version: hiring managers evaluating for
+senior AI/agentic engineering roles. The project needs an eval suite, cost
+and latency tracking, and clear documentation of design trade-offs to be
+credible at that level — not just a working demo.

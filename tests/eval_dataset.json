@@ -1,0 +1,434 @@
+[
+  {
+    "query": "What are my travel preferences?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "Do I prefer window or aisle seats on long flights?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What is my budget for domestic flights?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What is my budget for international flights?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "Should I check bags for a 4-day trip?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What are my focus hours?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "Do I like status meetings?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What should be included in my weekly review?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What kind of food do I usually order when working late?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "Am I vegetarian?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "Do I like spicy food?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "How do I choose flight seats based on flight duration?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What are my guidelines for status meetings?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What should my manager expect in a weekly review?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "If I go on a domestic trip for 3 days, should I check a bag?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["preferences.txt"]
+  },
+  {
+    "query": "What is the goal of the Chief of Staff project?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What components are planned for the memory layers?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What is the target audience for the portfolio version?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What is Phase 1 of the Chief of Staff AI agent?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "When will we build tool-calling agents?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Which phase implements proactive check-ins?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What comes after tool-calling agents in the roadmap?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Why does the project need an eval suite?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What memory types will be included in the memory layers?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Which phase is voice input/output planned for?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Is Phase 1 text-only or does it include voice?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Who is evaluating this portfolio project?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "What should we build before Phase 2?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "How many phases are defined in the project notes?",
+    "expected_needs_rag": true,
+    "expected_route": "direct_answer",
+    "expected_intent": "search_knowledge",
+    "expected_is_reflex": false,
+    "expected_sources": ["project_notes.txt"]
+  },
+  {
+    "query": "Hello there!",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "greet",
+    "expected_is_reflex": true,
+    "expected_sources": []
+  },
+  {
+    "query": "How are you today?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "greet",
+    "expected_is_reflex": true,
+    "expected_sources": []
+  },
+  {
+    "query": "What is 2+2?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Who was the first president of the United States?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Explain the theory of relativity in simple terms.",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Write a quick Python function to reverse a string.",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the speed of light?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "How far is the moon from the Earth?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Tell me a joke.",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the largest ocean on Earth?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Convert 50 degrees Fahrenheit to Celsius.",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the atomic number of carbon?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Can you write a short poem about coding?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the square root of 144?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What does HTML stand for?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Who wrote 'Romeo and Juliet'?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "How many days are in a leap year?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the chemical formula for water?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the definition of photosynthesis?",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "general_chat",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Good morning assistant!",
+    "expected_needs_rag": false,
+    "expected_route": "direct_answer",
+    "expected_intent": "greet",
+    "expected_is_reflex": true,
+    "expected_sources": []
+  },
+  {
+    "query": "What is the weather like in New York right now?",
+    "expected_needs_rag": false,
+    "expected_route": "single_agent",
+    "expected_intent": "check_weather",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Search the web for the latest SpaceX launch status.",
+    "expected_needs_rag": false,
+    "expected_route": "single_agent",
+    "expected_intent": "search_web",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Please check my calendar events.",
+    "expected_needs_rag": false,
+    "expected_route": "single_agent",
+    "expected_intent": "manage_calendar",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  },
+  {
+    "query": "Schedule a call with my manager tomorrow at 2 PM.",
+    "expected_needs_rag": false,
+    "expected_route": "single_agent",
+    "expected_intent": "manage_calendar",
+    "expected_is_reflex": false,
+    "expected_sources": []
+  }
+]

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chief of Staff — 3D Voice Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/examples/jsm/postprocessing/EffectComposer.js": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/EffectComposer.js",
+          "three/examples/jsm/postprocessing/RenderPass.js": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/RenderPass.js",
+          "three/examples/jsm/postprocessing/UnrealBloomPass.js": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/UnrealBloomPass.js",
+          "three/examples/jsm/postprocessing/OutputPass.js": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/OutputPass.js"
+        }
+      }
+    </script>
+    <style>
+        :root {
+            --bg-primary: #050811;
+            --bg-panel: rgba(10, 16, 32, 0.65);
+            --border-panel: rgba(255, 255, 255, 0.05);
+            --border-glow: rgba(56, 189, 248, 0.2);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --text-primary: #f0f4f8;
+            --text-secondary: #8ca0b0;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 3D Visualizer Canvas & Background */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: #020306;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.0s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-layer.active {
+            opacity: 1;
+        }
+
+        .bg-idle {
+            background: radial-gradient(circle at center, rgba(10, 24, 75, 0.4) 0%, rgba(3, 5, 15, 0.95) 45%, #010205 100%);
+        }
+
+        .bg-listening {
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.35) 0%, rgba(0, 15, 60, 0.95) 45%, #010205 100%);
+        }
+
+        .bg-speaking {
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.35) 0%, rgba(45, 10, 30, 0.95) 45%, #010205 100%);
+        }
+
+        .bg-thinking {
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.25) 0%, rgba(20, 5, 40, 0.95) 45%, #010205 100%);
+        }
+
+        .visualizer-backdrop-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vh;
+            height: 50vh;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glassmorphic Overlays */
+        .hud-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+        }
+
+        .hud-header, .hud-panel {
+            pointer-events: auto;
+        }
+
+        /* Top Header Navigation Bar */
+        .hud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: var(--bg-panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-panel);
+            border-radius: 12px;
+            padding: 12px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            filter: blur(15px);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .logo-area h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .version-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-panel);
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .status-dot.offline {
+            background-color: #ff3b30;
+            box-shadow: 0 0 8px rgba(255, 59, 48, 0.8);
+        }
+
+        .status-dot.connecting {
+            background-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+        }
+
+        .status-dot.online {
+            background-color: #34d399;
+            box-shadow: 0 0 10px #34d399;
+        }
+
+        /* Control Buttons */
+        .control-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-panel);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            outline: none;
+        }
+
+        .control-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Floating Bottom Transcript Panel */
+        .bottom-panel {
+            width: 100%;
+            max-width: 650px;
+            align-self: center;
+            padding: 16px 24px;
+            border: 1px solid var(--border-panel);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            background: var(--bg-panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .bottom-panel h2 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            border-left: 2px solid var(--accent);
+            padding-left: 8px;
+        }
+
+        .captions-panel {
+            height: 120px;
+            background: rgba(5, 8, 17, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+            padding: 10px 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .caption-line {
+            animation: fadeIn 0.3s ease forwards;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .caption-line .role {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 1px;
+        }
+
+        .caption-line.assistant .role {
+            color: var(--accent);
+        }
+
+        .caption-line.user .role {
+            color: #a855f7;
+        }
+
+        .caption-line .text {
+            color: var(--text-primary);
+        }
+
+        .pulse {
+            animation: textPulse 2s infinite ease-in-out;
+        }
+
+        /* Ambient Audio Equalizer Bar (Very thin at very bottom of card) */
+        .frequency-indicator-container {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 4px;
+        }
+
+        .frequency-indicator-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #0284c7 0%, var(--accent) 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 6px var(--accent-glow);
+            transition: width 0.1s linear;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Overlay text reminder to engage */
+        #engage-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            pointer-events: none;
+            z-index: 5;
+            text-align: center;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+        }
+
+        #engage-hint.hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D Canvas Visualizer -->
+    <div id="canvas-container">
+        <div class="bg-layer bg-idle active"></div>
+        <div class="bg-layer bg-listening"></div>
+        <div class="bg-layer bg-speaking"></div>
+        <div class="bg-layer bg-thinking"></div>
+        <div class="visualizer-backdrop-glow"></div>
+    </div>
+
+    <!-- User engagement hint -->
+    <div id="engage-hint" class="pulse">
+        CLICK ANYWHERE TO ENGAGE VOICE ENGINE
+    </div>
+
+    <!-- HUD Overlay -->
+    <div class="hud-overlay">
+        <!-- Header -->
+        <header class="hud-header">
+            <div class="logo-area">
+                <span class="logo-glow"></span>
+                <h1>CHIEF OF STAFF</h1>
+                <span class="version-tag">LIVE v2.0</span>
+            </div>
+            
+            <div class="status-indicator">
+                <span id="status-dot" class="status-dot offline"></span>
+                <span id="status-text">OFFLINE</span>
+            </div>
+
+            <div class="control-actions">
+                <button id="interrupt-btn" class="control-btn" disabled>INTERRUPT</button>
+                <button id="clear-btn" class="control-btn">CLEAR LOGS</button>
+            </div>
+        </header>
+
+        <!-- Floating Bottom Transcript Panel -->
+        <div class="hud-panel bottom-panel">
+            <h2>LIVE TRANSCRIPT</h2>
+            <div id="captions" class="captions-panel">
+                <div class="caption-line assistant">
+                    <span class="role">System</span>
+                    <span class="text">Engagement required to launch WebSocket streams.</span>
+                </div>
+            </div>
+            <div class="frequency-indicator-container">
+                <div class="frequency-indicator-fill" id="frequency-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import * as THREE from "three";
+        import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+        import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+        import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+        import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
+
+        // --- Custom Particle Shader Definitions ---
+        const vertexShader = `
+          uniform float u_time;
+          uniform float u_frequency;
+        
+          varying vec3 vNormal;
+          varying vec3 vViewPosition;
+          varying vec3 vPosition;
+        
+          float trigNoise(vec3 p) {
+              float n = sin(p.x) * cos(p.y) * sin(p.z);
+              n += 0.5 * sin(p.x * 2.1 + p.y) * cos(p.z * 1.9);
+              n += 0.25 * sin(p.y * 4.3) * cos(p.x * 3.7 + p.z);
+              return n / 1.75;
+          }
+        
+          void main() {
+              float speed = 1.0 + min(u_frequency, 40.0) * 0.08;
+              float activeTime = u_time * (speed * 0.45 + 0.18);
+              vec3 coord = position * 0.85 + vec3(0.0, activeTime, 0.0);
+              float noise = trigNoise(coord);
+              
+              float freqDamped = min(u_frequency, 40.0);
+              float displacement = (0.16 + (freqDamped / 40.0) * 0.72) * noise;
+              vec3 newPosition = position + normal * displacement;
+              
+              vNormal = normalize(normalMatrix * normal);
+              vec4 mvPosition = modelViewMatrix * vec4(newPosition, 1.0);
+              vViewPosition = -mvPosition.xyz;
+              vPosition = newPosition;
+              
+              gl_PointSize = 110.0 / -mvPosition.z;
+              gl_Position = projectionMatrix * mvPosition;
+          }
+        `;
+
+        const fragmentShader = `
+          uniform float u_time;
+          uniform float u_frequency;
+          uniform vec3 u_colorCenter;
+          uniform vec3 u_colorCrescent;
+          uniform vec3 u_colorRim;
+        
+          varying vec3 vNormal;
+          varying vec3 vViewPosition;
+          varying vec3 vPosition;
+        
+          void main() {
+              vec2 pc = gl_PointCoord - vec2(0.5);
+              float dist = length(pc);
+              if (dist > 0.5) discard;
+              
+              float particleGlow = smoothstep(0.5, 0.05, dist);
+              vec3 normal = normalize(vNormal);
+              vec3 viewDir = normalize(vViewPosition);
+              float dotNV = dot(normal, viewDir);
+              
+              float fresnel = pow(1.0 - max(dotNV, 0.0), 3.0);
+              float colorMix = smoothstep(-2.2, -0.5, vPosition.y + vPosition.x * 0.4);
+              vec3 colGrid = mix(u_colorCrescent, u_colorCenter, colorMix);
+              vec3 colRim = u_colorRim * fresnel * 4.2;
+              
+              vec3 finalColor = (colGrid * 0.68 + colRim) * particleGlow;
+              float amp = 1.0 + u_frequency * 0.006;
+              finalColor *= amp;
+              
+              float alpha = mix(0.32, 0.95, fresnel) * particleGlow;
+              gl_FragColor = vec4(finalColor, alpha);
+          }
+        `;
+
+        // --- WebGL Scene Initialization ---
+        const container = document.getElementById("canvas-container");
+        let W = window.innerWidth;
+        let H = window.innerHeight;
+        let mouseX = 0, mouseY = 0;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(W, H);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        container.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 1000);
+        camera.position.set(0, -2, 22);
+        camera.lookAt(0, 0, 0);
+
+        // Post-processing
+        const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(W, H));
+        bloomPass.threshold = 0.35;
+        bloomPass.strength = 0.28;
+        bloomPass.radius = 0.32;
+
+        const bloomComposer = new EffectComposer(renderer);
+        bloomComposer.addPass(renderScene);
+        bloomComposer.addPass(bloomPass);
+
+        const outputPass = new OutputPass();
+        bloomComposer.addPass(outputPass);
+
+        // --- State Colors Mappings ---
+        const stateColors = {
+            idle: {
+                center: new THREE.Color(0.02, 0.05, 0.3),     // Deep blue
+                crescent: new THREE.Color(0.3, 0.0, 0.5),      // Indigo
+                rim: new THREE.Color(0.0, 0.3, 0.8)           // Electric blue
+            },
+            listening: {
+                center: new THREE.Color(0.0, 0.4, 0.3),       // Emerald teal
+                crescent: new THREE.Color(0.0, 0.7, 0.5),     // Cyan crescent
+                rim: new THREE.Color(0.2, 0.8, 1.0)           // Glowing cyan
+            },
+            speaking: {
+                center: new THREE.Color(0.4, 0.0, 0.3),       // Deep ruby
+                crescent: new THREE.Color(0.8, 0.0, 0.5),     // Hot pink/purple
+                rim: new THREE.Color(0.9, 0.2, 0.8)           // Pink-purple
+            },
+            thinking: {
+                center: new THREE.Color(0.2, 0.0, 0.4),       // Purple center
+                crescent: new THREE.Color(0.5, 0.0, 0.8),     // Electric crescent
+                rim: new THREE.Color(1.0, 0.5, 0.0)           // Amber rim
+            }
+        };
+
+        const targetColors = {
+            center: stateColors.idle.center.clone(),
+            crescent: stateColors.idle.crescent.clone(),
+            rim: stateColors.idle.rim.clone()
+        };
+
+        const uniforms = {
+            u_time: { value: 0.0 },
+            u_frequency: { value: 0.0 },
+            u_colorCenter: { value: stateColors.idle.center.clone() },
+            u_colorCrescent: { value: stateColors.idle.crescent.clone() },
+            u_colorRim: { value: stateColors.idle.rim.clone() }
+        };
+
+        const mat = new THREE.ShaderMaterial({
+            uniforms,
+            vertexShader,
+            fragmentShader,
+            transparent: true,
+            depthWrite: false,
+        });
+
+        const geo = new THREE.SphereGeometry(3.5, 110, 55);
+        const mesh = new THREE.Points(geo, mat);
+        scene.add(mesh);
+
+        // --- Interaction Listeners ---
+        document.addEventListener("mousemove", (e) => {
+            const halfX = window.innerWidth / 2;
+            const halfY = window.innerHeight / 2;
+            mouseX = (e.clientX - halfX) / 100;
+            mouseY = (e.clientY - halfY) / 100;
+        });
+
+        window.addEventListener("resize", () => {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            camera.aspect = W / H;
+            camera.updateProjectionMatrix();
+            renderer.setSize(W, H);
+            bloomComposer.setSize(W, H);
+        });
+
+        // State machine manager
+        let currentState = "idle";
+        function setVisualizerState(state) {
+            const validStates = ["idle", "listening", "speaking", "thinking"];
+            if (!validStates.includes(state)) return;
+            currentState = state;
+
+            if (stateColors[state]) {
+                targetColors.center.copy(stateColors[state].center);
+                targetColors.crescent.copy(stateColors[state].crescent);
+                targetColors.rim.copy(stateColors[state].rim);
+            }
+
+            // Toggle background shadow gradient layers
+            document.querySelectorAll(".bg-layer").forEach((layer) => {
+                if (layer.classList.contains(`bg-${state}`)) {
+                    layer.classList.add("active");
+                } else {
+                    layer.classList.remove("active");
+                }
+            });
+        }
+
+        // --- Voice WebSocket & Playback Logic ---
+        const interruptBtn = document.getElementById("interrupt-btn");
+        const clearBtn = document.getElementById("clear-btn");
+        const captionsPanel = document.getElementById("captions");
+        const statusDot = document.getElementById("status-dot");
+        const statusText = document.getElementById("status-text");
+
+        let ws = null;
+        let audioCtx = null;
+        let micStream = null;
+        let scriptProcessor = null;
+        let activeSources = [];
+        let nextStartTime = 0;
+        let isConnected = false;
+        let unifiedAnalyser = null;
+        let dataArray = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Master visualizer analyser
+                unifiedAnalyser = audioCtx.createAnalyser();
+                unifiedAnalyser.fftSize = 64;
+                dataArray = new Uint8Array(unifiedAnalyser.frequencyBinCount);
+            }
+        }
+
+        // Auto connect when user clicks anywhere
+        let isEngaged = false;
+        document.body.addEventListener("click", async () => {
+            if (isEngaged) return;
+            isEngaged = true;
+            
+            const hint = document.getElementById("engage-hint");
+            if (hint) hint.classList.add("hidden");
+
+            initAudio();
+            await connect();
+        });
+
+        interruptBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Avoid triggering body click handler
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: "interrupt" }));
+            }
+            interruptPlayback();
+        });
+
+        clearBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Avoid triggering body click handler
+            captionsPanel.innerHTML = "";
+            lastRole = null;
+            lastCaptionTextSpan = null;
+        });
+
+        async function connect() {
+            if (audioCtx.state === "suspended") {
+                await audioCtx.resume();
+            }
+
+            statusText.innerText = "CONNECTING";
+            statusDot.className = "status-dot connecting";
+
+            const sessionId = "live-session-" + Math.random().toString(36).substring(2, 9);
+            const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+            const wsUrl = `${protocol}//${window.location.host}/ws/live?session_id=${sessionId}`;
+
+            ws = new WebSocket(wsUrl);
+
+            ws.onopen = async () => {
+                isConnected = true;
+                interruptBtn.disabled = false;
+                statusText.innerText = "ONLINE";
+                statusDot.className = "status-dot online";
+                
+                captionsPanel.innerHTML = "";
+                appendCaption("System", "WebSocket connected. 3D Engine active.", "assistant");
+                setVisualizerState("listening");
+
+                try {
+                    await startRecording();
+                } catch(e) {
+                    appendCaption("System", `Microphone error: ${e.message}`, "assistant");
+                    disconnect();
+                }
+            };
+
+            ws.onmessage = (event) => {
+                const payload = JSON.parse(event.data);
+
+                if (payload.type === "audio") {
+                    setVisualizerState("speaking");
+                    const base64Audio = payload.data;
+                    const binaryString = atob(base64Audio);
+                    const bytes = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    const dataView = new DataView(bytes.buffer);
+                    const float32Data = pcm16ToFloat32(dataView);
+                    playAudioChunk(float32Data);
+                }
+                else if (payload.type === "caption") {
+                    appendCaption(payload.role === "user" ? "You" : "Assistant", payload.text, payload.role);
+                }
+                else if (payload.type === "interrupted") {
+                    interruptPlayback();
+                }
+                else if (payload.type === "error") {
+                    appendCaption("Error", payload.message, "user");
+                }
+            };
+
+            ws.onclose = () => {
+                disconnect();
+            };
+        }
+
+        function disconnect() {
+            isConnected = false;
+            interruptBtn.disabled = true;
+            statusText.innerText = "OFFLINE";
+            statusDot.className = "status-dot offline";
+            appendCaption("System", "Connection closed. Click to reconnect.", "assistant");
+            setVisualizerState("idle");
+
+            stopRecording();
+            interruptPlayback();
+
+            lastRole = null;
+            lastCaptionTextSpan = null;
+            isEngaged = false; // Allow reconnection click
+            
+            const hint = document.getElementById("engage-hint");
+            if (hint) hint.classList.remove("hidden");
+
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+
+        // --- Audio Streams Capture ---
+        async function startRecording() {
+            micStream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    channelCount: 1,
+                    sampleRate: 16000,
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+
+            const source = audioCtx.createMediaStreamSource(micStream);
+            source.connect(unifiedAnalyser);
+
+            scriptProcessor = audioCtx.createScriptProcessor(2048, 1, 1);
+            source.connect(scriptProcessor);
+            scriptProcessor.connect(audioCtx.destination);
+
+            scriptProcessor.onaudioprocess = (e) => {
+                if (!isConnected || ws.readyState !== WebSocket.OPEN) return;
+
+                const inputBuffer = e.inputBuffer.getChannelData(0);
+
+                // Local VAD volume tracking
+                let sum = 0;
+                for (let i = 0; i < inputBuffer.length; i++) {
+                    sum += inputBuffer[i] * inputBuffer[i];
+                }
+                const rms = Math.sqrt(sum / inputBuffer.length);
+                if (rms > 0.015 && activeSources.length > 0) {
+                    console.log("[ClientVAD] Speech threshold exceeded! Interrupting playback. RMS:", rms);
+                    interruptPlayback();
+                    ws.send(JSON.stringify({ type: "interrupt" }));
+                }
+
+                const downsampled = downsampleBuffer(inputBuffer, audioCtx.sampleRate, 16000);
+                const pcmBuffer = new ArrayBuffer(downsampled.length * 2);
+                const view = new DataView(pcmBuffer);
+                floatTo16BitPCM(view, 0, downsampled);
+
+                ws.send(pcmBuffer);
+            };
+        }
+
+        function stopRecording() {
+            if (micStream) {
+                micStream.getTracks().forEach(t => t.stop());
+                micStream = null;
+            }
+            if (scriptProcessor) {
+                scriptProcessor.disconnect();
+                scriptProcessor = null;
+            }
+        }
+
+        // --- Scheduled Playback ---
+        function playAudioChunk(float32Data) {
+            if (audioCtx.state === "suspended") {
+                audioCtx.resume();
+            }
+            const buffer = audioCtx.createBuffer(1, float32Data.length, 24000);
+            buffer.getChannelData(0).set(float32Data);
+
+            const source = audioCtx.createBufferSource();
+            source.buffer = buffer;
+            
+            source.connect(unifiedAnalyser);
+            unifiedAnalyser.connect(audioCtx.destination);
+
+            let startTime = nextStartTime;
+            const currentTime = audioCtx.currentTime;
+            if (startTime < currentTime) {
+                startTime = currentTime + 0.04;
+            }
+
+            source.start(startTime);
+            nextStartTime = startTime + buffer.duration;
+
+            activeSources.push(source);
+            source.onended = () => {
+                activeSources = activeSources.filter(s => s !== source);
+                if (activeSources.length === 0 && currentState === "speaking") {
+                    setVisualizerState("listening");
+                }
+            };
+        }
+
+        function interruptPlayback() {
+            activeSources.forEach(src => {
+                try { src.stop(); } catch(e) {}
+            });
+            activeSources = [];
+            nextStartTime = 0;
+            setVisualizerState("listening");
+        }
+
+        // --- Helpers ---
+        let lastRole = null;
+        let lastCaptionTextSpan = null;
+
+        function appendCaption(role, text, type) {
+            if (lastRole === role && lastCaptionTextSpan) {
+                lastCaptionTextSpan.innerText += text;
+            } else {
+                const div = document.createElement("div");
+                div.className = `caption-line ${type || "assistant"}`;
+                div.innerHTML = `<span class="role">${role}</span><span class="text"></span>`;
+                captionsPanel.appendChild(div);
+                lastCaptionTextSpan = div.querySelector(".text");
+                lastCaptionTextSpan.innerText = text;
+                lastRole = role;
+            }
+            captionsPanel.scrollTop = captionsPanel.scrollHeight;
+        }
+
+        function pcm16ToFloat32(dataView) {
+            const floatArray = new Float32Array(dataView.byteLength / 2);
+            for (let i = 0; i < floatArray.length; i++) {
+                const int16 = dataView.getInt16(i * 2, true);
+                floatArray[i] = int16 / 32768.0;
+            }
+            return floatArray;
+        }
+
+        function downsampleBuffer(buffer, inputSampleRate, outputSampleRate) {
+            if (inputSampleRate === outputSampleRate) return buffer;
+            const ratio = inputSampleRate / outputSampleRate;
+            const newLength = Math.round(buffer.length / ratio);
+            const result = new Float32Array(newLength);
+            let offsetResult = 0;
+            let offsetBuffer = 0;
+            while (offsetResult < result.length) {
+                const nextOffset = Math.round((offsetResult + 1) * ratio);
+                let accum = 0, count = 0;
+                for (let i = offsetBuffer; i < nextOffset && i < buffer.length; i++) {
+                    accum += buffer[i];
+                    count++;
+                }
+                result[offsetResult] = count > 0 ? accum / count : 0;
+                offsetResult++;
+                offsetBuffer = nextOffset;
+            }
+            return result;
+        }
+
+        function floatTo16BitPCM(output, offset, input) {
+            for (let i = 0; i < input.length; i++, offset += 2) {
+                const s = Math.max(-1, Math.min(1, input[i]));
+                output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
+        }
+
+        // --- Animation Loop ---
+        let lastTime = performance.now();
+        let accumulatedTime = 0;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            const now = performance.now();
+            const delta = (now - lastTime) * 0.001;
+            lastTime = now;
+
+            let targetFrequency = 0;
+            const progressFill = document.getElementById("frequency-fill");
+
+            // Slowly lerp shaders color variables to target state colors
+            uniforms.u_colorCenter.value.lerp(targetColors.center, 0.05);
+            uniforms.u_colorCrescent.value.lerp(targetColors.crescent, 0.05);
+            uniforms.u_colorRim.value.lerp(targetColors.rim, 0.05);
+
+            if (currentState === "idle") {
+                accumulatedTime += delta * 0.6;
+                targetFrequency = 2.0 + Math.sin(accumulatedTime * 2.0) * 0.4;
+                if (progressFill) progressFill.style.width = "4%";
+
+                mesh.rotation.y += delta * 0.15;
+                mesh.rotation.x += delta * 0.08;
+
+                camera.position.x += (mouseX + Math.sin(accumulatedTime * 0.2) * 2 - camera.position.x) * 0.03;
+                camera.position.y += (-mouseY + Math.cos(accumulatedTime * 0.2) * 1 - camera.position.y) * 0.03;
+                camera.lookAt(scene.position);
+            }
+            else {
+                accumulatedTime += delta * 1.0;
+
+                if (unifiedAnalyser) {
+                    unifiedAnalyser.getByteFrequencyData(dataArray);
+                    let sum = 0;
+                    let maxVal = 0;
+                    for (let i = 0; i < dataArray.length; i++) {
+                        const val = dataArray[i];
+                        sum += val;
+                        if (val > maxVal) maxVal = val;
+                    }
+                    const avg = sum / dataArray.length;
+                    targetFrequency = avg * 0.45 + maxVal * 0.55;
+
+                    const normalizedFreq = targetFrequency / 255;
+                    if (progressFill) progressFill.style.width = `${Math.min(normalizedFreq * 100, 100)}%`;
+                }
+
+                mesh.rotation.y += delta * (0.35 + targetFrequency * 0.02);
+                mesh.rotation.x += delta * (0.18 + targetFrequency * 0.01);
+
+                camera.position.x += (mouseX - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+            }
+
+            uniforms.u_time.value = accumulatedTime;
+            uniforms.u_frequency.value += (targetFrequency - uniforms.u_frequency.value) * 0.15;
+
+            bloomComposer.render();
+        };
+
+        animate();
+    </script>
+</body>
+</html>

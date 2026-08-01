@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheris // 3D Audio Visualizer</title>
+    <link rel="stylesheet" href="/visualizer/style.css?v=28">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/examples/jsm/postprocessing/EffectComposer.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/postprocessing/EffectComposer.js",
+          "three/examples/jsm/postprocessing/RenderPass.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/postprocessing/RenderPass.js",
+          "three/examples/jsm/postprocessing/UnrealBloomPass.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/postprocessing/UnrealBloomPass.js",
+          "three/examples/jsm/postprocessing/OutputPass.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/postprocessing/OutputPass.js"
+        }
+      }
+    </script>
+</head>
+
+<body>
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container">
+        <div class="bg-layer bg-idle active"></div>
+        <div class="bg-layer bg-listening"></div>
+        <div class="bg-layer bg-speaking"></div>
+        <div class="bg-layer bg-thinking"></div>
+        <div class="visualizer-backdrop-glow"></div>
+    </div>
+
+    <!-- Fullscreen SVG for dynamic data threads -->
+    <svg id="threads-svg"
+        style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3; pointer-events: none; overflow: visible;"></svg>
+    <!-- Container for dynamic tool cards -->
+    <div id="tool-cards-container"
+        style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 5; pointer-events: none;">
+    </div>
+
+    <!-- UI Overlay HUD -->
+    <div class="hud-container">
+        <!-- Header -->
+        <header class="hud-header">
+            <div class="logo-area">
+                <span class="logo-glow"></span>
+                <h1>CHIEF OF AGENTS</h1>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="status-indicator">
+                    <span id="status-dot" class="status-dot offline"></span>
+                    <span id="status-text">OFFLINE</span>
+                </div>
+                <div class="control-actions" style="display: flex; gap: 8px;">
+                    <button id="interrupt-btn" class="state-btn" disabled style="padding: 6px 14px;">INTERRUPT</button>
+                    <button id="clear-btn" class="state-btn" style="padding: 6px 14px;">CLEAR LOGS</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Panel -->
+        <div class="hud-panel left-panel">
+            <div class="panel-section"
+                style="flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 250px; margin-bottom: 8px;">
+                <h2>LIVE TRANSCRIPT</h2>
+                <div id="captions" class="captions-panel"
+                    style="flex: 1; background: rgba(5, 8, 17, 0.45); border: 1px solid rgba(255, 255, 255, 0.02); border-radius: 6px; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem; font-family: var(--font-sans); height: 100%;">
+                    <div class="caption-line assistant" style="animation: fadeIn 0.3s ease;">
+                        <span class="role"
+                            style="font-family: var(--font-mono); font-size: 0.65rem; color: #0088ff; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 2px;">System</span>
+                        <span class="text" style="color: #f0f4f8;">Click Engage Core to connect.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Output Equalizer Simulation & Futuristic Command Input Panel -->
+            <div class="bottom-panel">
+                <div class="command-bar-container" style="display: flex; width: 100%; margin-bottom: 6px;">
+                    <input type="text" id="chat-input" placeholder="SEND A DIRECTIVE TO CHIEF..." autocomplete="off" />
+                    <button id="chat-send-btn" title="Send Directive">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            style="width: 16px; height: 16px;">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="audio-feedback-header">
+                    <span>FREQUENCY DEFORMATION INDEX</span>
+                    <span id="frequency-val">0.00 Hz</span>
+                </div>
+                <div class="frequency-indicator-container">
+                    <div class="frequency-indicator-fill" id="frequency-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Overlay for Audio Activation -->
+    <div id="start-overlay" class="overlay-active">
+        <video src="/visualizer/Chief_video.mp4" autoplay loop muted playsinline class="overlay-bg-video"></video>
+        <div class="overlay-card">
+            <div class="overlay-logo">
+                <div class="orb"></div>
+            </div>
+            <h2>INITIALIZE AUDIO ENGINE</h2>
+            <p>Access to your microphone is required to capture audio frequencies and deform the 3D wireframe mesh in
+                real-time.</p>
+            <button id="start-btn" class="glowing-btn">ENGAGE CORE</button>
+        </div>
+    </div>
+
+    <script type="module" src="/visualizer/app.js?v=28"></script>
+</body>
+
+</html>

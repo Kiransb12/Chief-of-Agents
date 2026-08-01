@@ -1,0 +1,432 @@
+[
+  {
+    "session_id": "session-test-123",
+    "timestamp": "2026-07-16 18:43:41",
+    "summary": "The user shared their preferences for the Rust coding language and dark mode for apps. The assistant took note of these preferences and offered support for any future questions or needs."
+  },
+  {
+    "session_id": "live-session-h2bvqjx",
+    "timestamp": "2026-07-16 19:18:57",
+    "summary": "The session involved clarifying the meaning of \"tokens\" in a Hindi query, which appeared to be related to a personal context or game, and required refining a search strategy to better understand the user's intent. The assistant analyzed the query, ruled out general knowledge base applications, and focused on a search for \"tokens anti-gravity\" to retrieve relevant personal context."
+  },
+  {
+    "session_id": "live-session-z8yjnti",
+    "timestamp": "2026-07-16 19:28:31",
+    "summary": "The session involved retrieving and presenting the user's calendar events, clarifying their food preferences, and gathering personal context, including their name, coding language, and other preferences. The assistant also acknowledged and adapted to language preferences, switching between English and Hindi inputs while maintaining a primary response language of English."
+  },
+  {
+    "session_id": "live-session-xje489y",
+    "timestamp": "2026-07-16 19:29:01",
+    "summary": "The session involved analyzing a user's ambiguous request about a \"WhatsApp date on Saturday\" and attempting to clarify their intent to provide a helpful response. The assistant considered various potential actions, such as checking scheduled events or suggesting event creation, but prioritized forming a clarifying question to determine the user's intent."
+  },
+  {
+    "session_id": "live-session-8n4oyag",
+    "timestamp": "2026-07-16 19:33:24",
+    "summary": "The session involved a conversational exchange in Kannada, where the assistant responded to various user queries, including greetings, requests for personal information, and questions about preferences and calendar events. The assistant used tools like `retrieve_rag_context` and `get_calendar_events` to gather relevant information and provide accurate responses in Kannada."
+  },
+  {
+    "session_id": "live-session-otns7yg",
+    "timestamp": "2026-07-16 19:38:36",
+    "summary": "The user's name, Kiran, was retrieved from semantic memory using the `retrieve_rag_context` tool and recalled from \"Relevant Semantic Memory Facts\". The assistant then responded to the user's query by providing their name in Telugu, fulfilling the user's request."
+  },
+  {
+    "session_id": "live-session-wes4mhp",
+    "timestamp": "2026-07-16 19:40:21",
+    "summary": "The session involved attempting to determine a user's name in response to a Kannada query, using the `retrieve_rag_context` tool to search personal context. The user's name was not found, leading to a conclusion that it must be directly requested from the user."
+  },
+  {
+    "session_id": "live-session-m426yl3",
+    "timestamp": "2026-07-16 19:50:03",
+    "summary": "The session involved identifying and responding to a user named Kiran, with language preferences of English, Kannada, and Telugu, and gathering personal data such as name, preferences, and project details. The assistant used various tools, including `retrieve_rag_context` and `get_calendar_events`, to retrieve and state the known facts about Kiran."
+  },
+  {
+    "session_id": "live-session-fbiny05",
+    "timestamp": "2026-07-16 19:51:19",
+    "summary": "The session involved crafting a personalized greeting and gathering relevant details about the user, Kiran, including their name, preferences, and project-related information from their calendar and documents. The assistant successfully retrieved this information and initiated tool calls to access calendar events and project details, aiming to assemble a unified response."
+  },
+  {
+    "session_id": "live-session-de0db7a",
+    "timestamp": "2026-07-16 20:00:39",
+    "summary": "The session involved analyzing user requests, including calendar updates, personal preferences retrieval, and weather information for Delhi and Bangalore, and addressing potential scheduling conflicts. The assistant also clarified limitations in generating visual weather charts and sought to provide alternative textual summaries to meet the user's needs."
+  },
+  {
+    "session_id": "live-session-wwcp77q",
+    "timestamp": "2026-07-16 20:15:39",
+    "summary": "The session focused on explaining and defining Retrieval-Augmented Generation (RAG), an AI framework that enhances response quality by retrieving relevant data before generating an answer. The discussion explored the concept of RAG, its mechanics, and its implementation using the `retrieve_rag_context` tool, but was interrupted before a practical demonstration could be provided."
+  },
+  {
+    "session_id": "live-session-tczlduq",
+    "timestamp": "2026-07-16 20:46:04",
+    "summary": "The session involved clarifying the user's intent behind several ambiguous inputs, including \"12 12 \u0cb8\u0cbf\u0c95\u0ccd\u0c95\u0cb2\u0cbf\u0c97\u0cc1\" and \"10 government\", which mixed languages such as Kannada, Telugu, and English. The conversation aimed to decode the user's meaning, with a focus on understanding the context of \"Sunday\" in Kannada, \"\u0cad\u0cbe\u0ca8\u0cc1\u0cb5\u0cbe\u0cb0\", to provide a clear response."
+  },
+  {
+    "session_id": "live-session-yj20qo1",
+    "timestamp": "2026-07-16 20:57:19",
+    "summary": "The session involved addressing a greeting, accessing calendar data, and analyzing tomorrow's schedule, which revealed a potential scheduling conflict with multiple \"Team Sync\" meetings. The assistant attempted to provide solutions to resolve the conflict and re-establish contact with the user after a perceived interruption."
+  },
+  {
+    "session_id": "live-session-rw8dc6p",
+    "timestamp": "2026-07-16 21:05:08",
+    "summary": "The session involved attempting to retrieve Delhi's live weather using the `get_live_weather` tool, but the effort was unsuccessful due to a timeout. The assistant planned to report the error and suggest alternatives, such as retrying or using a different approach."
+  },
+  {
+    "session_id": "live-session-y2nt506",
+    "timestamp": "2026-07-16 21:08:29",
+    "summary": "The assistant initiated a dialogue protocol, recalling the user's name as Kiran and establishing English as the primary interface language. The assistant prepared to offer assistance after a friendly greeting."
+  },
+  {
+    "session_id": "live-session-v9np8hs",
+    "timestamp": "2026-07-16 21:10:18",
+    "summary": "The session involved registering and responding to a user's greeting, initially in an unspecified language and later in Hindi. The interaction required adapting to the user's implicit linguistic preferences, which include Hindi, Kannada, and Telugu, while planning to respond in English."
+  },
+  {
+    "session_id": "live-session-pco830o",
+    "timestamp": "2026-07-16 21:25:21",
+    "summary": "Session completed successfully."
+  },
+  {
+    "session_id": "live-session-gtnf9xo",
+    "timestamp": "2026-07-16 23:31:54",
+    "summary": "The session involved crafting a polite and professional response to a user's repeated greetings, with a focus on delivering a concise and helpful message in English. The assistant maintained context and adapted to the user's language preferences, preparing to provide a friendly and helpful response."
+  },
+  {
+    "session_id": "live-session-nqhm4iq",
+    "timestamp": "2026-07-16 23:44:26",
+    "summary": "The session involved crafting a warm welcome, retrieving calendar data, identifying a scheduling conflict, and clarifying how to resolve it. Additionally, the assistant retrieved the user's salary information using the `retrieve_rag_context` tool to provide a response in Telugu."
+  },
+  {
+    "session_id": "live-session-o5nixoc",
+    "timestamp": "2026-07-16 23:44:29",
+    "summary": "The session initiated with a greeting in Hindi, where the user said \"\u0939\u0947\u0932\u094b\" and the assistant prepared to respond in kind. The assistant planned to include the name \"Kiran\" in the response to establish a friendly connection."
+  },
+  {
+    "session_id": "live-session-8yttnm1",
+    "timestamp": "2026-07-16 23:52:54",
+    "summary": "The session involved a language switch from Hindi to English, followed by an attempt to fetch the live weather in Delhi, which ultimately resulted in a timeout. The assistant acknowledged the timeout as a recognized issue and planned to inform the user accordingly."
+  },
+  {
+    "session_id": "live-session-c15htot",
+    "timestamp": "2026-07-16 23:57:51",
+    "summary": "The session involved registering a Hindi greeting and recalling a user's preference for bilingual interactions in Hindi and English. The assistant planned to respond conversationally in Hindi and synthesize the user's profile, including preferences and areas of expertise, for concise presentation."
+  },
+  {
+    "session_id": "live-session-7orzkxa",
+    "timestamp": "2026-07-17 00:14:06",
+    "summary": "The session involved analyzing and compiling a user's profile, retrieving details such as their name, coding preferences, language, and food preferences. The compiled information includes work style, technical expertise, and scheduling considerations, which will be presented in a concise manner respecting the user's preference for direct communication."
+  },
+  {
+    "session_id": "live-session-fba5nnc",
+    "timestamp": "2026-07-17 01:32:03",
+    "summary": "The session began with the registration of a bilingual greeting, \"\u0c39\u0c47 \u0c39\u0c3e\u0c2f\u0c4d\", indicating a preference for English and Hindi. A response mirroring this style is being crafted to offer a friendly and professional greeting with assistance in both languages."
+  },
+  {
+    "session_id": "live-session-egmm2j6",
+    "timestamp": "2026-07-17 01:32:05",
+    "summary": "The session involved analyzing and categorizing the user's preferences, including food, coding language, and work hours, as well as preparing to retrieve Delhi's weather and OpenAI news. The assistant utilized various tools, such as `retrieve_rag_context` and `get_live_weather`, to gather and organize the user's information."
+  },
+  {
+    "session_id": "live-session-v7qbslx",
+    "timestamp": "2026-07-17 01:32:07",
+    "summary": "The session initiated a conversational thread with Kiran, taking into account their language preferences. The assistant also started attempting to fetch Delhi's weather using the `get_live_weather` tool, adapting to potential timeouts."
+  },
+  {
+    "session_id": "live-session-1icw1rh",
+    "timestamp": "2026-07-17 01:38:53",
+    "summary": "The session involved retrieving the user's name, accessing their specific weather interests for Delhi and Bangalore, and initiating a search for information on a \"project\". The assistant also prepared to use tools like `get_live_weather` and `search_web` to provide relevant information to the user."
+  },
+  {
+    "session_id": "live-session-xknjo8m",
+    "timestamp": "2026-07-17 04:42:57",
+    "summary": "Session completed successfully."
+  },
+  {
+    "session_id": "live-session-hqb9njv",
+    "timestamp": "2026-07-17 09:37:21",
+    "summary": "The session involved crafting a polite and respectful response to a bilingual greeting, aiming to provide a helpful and conversational introduction. The assistant also reiterating assistance to Kiran, catering to their Hindi and English language preferences."
+  },
+  {
+    "session_id": "live-session-w8chtcv",
+    "timestamp": "2026-07-17 09:39:00",
+    "summary": "The session involved a user greeting and a request for Delhi's weather, which was attempted using the `get_live_weather` tool. The tool call resulted in a timeout, prompting the assistant to prepare an alternative response suggesting retrying the request or other methods to retrieve the weather information."
+  },
+  {
+    "session_id": "live-session-ntyq05i",
+    "timestamp": "2026-07-17 10:27:59",
+    "summary": "The session involved discussing various topics such as news in Bangalore, weather in Chennai and Mumbai, and news in Jammu and Kashmir, with the assistant attempting to retrieve the requested information using tools like `search_web` and `get_live_weather`. The assistant also encountered timeouts for some queries and worked on translating error messages into Kannada to communicate with the user."
+  },
+  {
+    "session_id": "live-session-8mrv7dr",
+    "timestamp": "2026-07-17 10:46:15",
+    "summary": "The session involved discussing various topics, including weather in different cities such as Delhi, Chennai, and Jammu and Kashmir, and performing web searches for specific queries like \"Samsung\". The assistant adapted to the user's language preferences, switching between Hindi and English, and utilized tools like `get_live_weather` and `search_web` to provide relevant information."
+  },
+  {
+    "session_id": "live-session-jxdvza4",
+    "timestamp": "2026-07-17 10:48:50",
+    "summary": "\u090f\u0915 \u0909\u092a\u092f\u094b\u0917\u0915\u0930\u094d\u0924\u093e \u0915\u0947 \u0938\u093e\u0925 \u092c\u093e\u0924\u091a\u0940\u0924 \u0936\u0941\u0930\u0942 \u0939\u0941\u0908, \u091c\u093f\u0938\u092e\u0947\u0902 \u0939\u093f\u0902\u0926\u0940 \u092e\u0947\u0902 \u0938\u0902\u0935\u093e\u0926 \u0915\u0930\u0928\u0947 \u0915\u0940 \u092a\u094d\u0930\u093e\u0925\u092e\u093f\u0915\u0924\u093e \u0935\u094d\u092f\u0915\u094d\u0924 \u0915\u0940 \u0917\u0908\u0964 \u0938\u0939\u093e\u092f\u0915 \u0928\u0947 \u0939\u093f\u0902\u0926\u0940 \u092e\u0947\u0902 \u091c\u0935\u093e\u092c \u0926\u0947\u0928\u0947 \u0915\u0940 \u092a\u0947\u0936\u0915\u0936 \u0915\u0940, \u0938\u093e\u0925 \u0939\u0940 \u0905\u0902\u0917\u094d\u0930\u0947\u091c\u0940 \u092e\u0947\u0902 \u092d\u0940 \u091c\u0935\u093e\u092c \u0926\u0947\u0928\u0947 \u0915\u093e \u0935\u093f\u0915\u0932\u094d\u092a \u0926\u093f\u092f\u093e\u0964"
+  },
+  {
+    "session_id": "live-session-t63qixi",
+    "timestamp": "2026-07-17 10:48:53",
+    "summary": "The session involved discussing various topics, including retrieving weather information for \"Jammu Kashmir\", searching for news about \"Dell\", and accessing the user's scheduled calendar events. The assistant took actions such as calling the `get_live_weather` tool, translating the user's intent into a web search query, and leveraging the `get_calendar_events` tool to retrieve the user's scheduled events."
+  },
+  {
+    "session_id": "live-session-wyl9g83",
+    "timestamp": "2026-07-17 11:03:21",
+    "summary": "The session involved retrieving Delhi's weather, which timed out, and gathering news about Bangalore, as well as checking and analyzing the user's calendar events for July 17, 2026, which revealed a scheduling conflict for the next day. The assistant also synthesized user preferences from various sources and prepared to provide relevant information to the user."
+  },
+  {
+    "session_id": "live-session-obxilgh",
+    "timestamp": "2026-07-17 12:27:33",
+    "summary": "The session focused on addressing user queries about the weather in Delhi and Dubai, with the assistant attempting to clarify and provide accurate information. The assistant used tools like `get_live_weather` to retrieve and relay weather data for the specified locations."
+  },
+  {
+    "session_id": "live-session-bz6l0g6",
+    "timestamp": "2026-07-17 12:55:35",
+    "summary": "The session involved crafting a welcoming response, clarifying ambiguous user queries, and acquiring weather data for Kolkata using the `get_live_weather` tool. The assistant also navigated language preferences, switching between English, Telugu, and Hindi to provide relevant and concise support."
+  },
+  {
+    "session_id": "live-session-i13e62d",
+    "timestamp": "2026-07-17 13:56:14",
+    "summary": "The session began with an acknowledgement of the user's confirmation, and the assistant prepared to offer further assistance. The assistant considered the user's preferences and context to provide general help or scheduling options."
+  },
+  {
+    "session_id": "live-session-gkn29hu",
+    "timestamp": "2026-07-17 14:08:23",
+    "summary": "The session involved interpreting a user's brief pause and responses to provide tailored support, with discussions around scheduling and calendar conflicts, including a \"Team Sync\" conflict at 4 PM. The conversation was hindered by unclear inputs, such as \"64\" and \"over question\", which required repeated requests for clarification to understand the user's intent."
+  },
+  {
+    "session_id": "live-session-ojsajqn",
+    "timestamp": "2026-07-17 15:18:16",
+    "summary": "The user requested the weather for Kochi, and the assistant planned to utilize the `get_live_weather` tool with 'kochi' as the location parameter. The assistant initiated the process to retrieve the live weather information for Kochi."
+  },
+  {
+    "session_id": "live-session-qv5lrbv",
+    "timestamp": "2026-07-17 15:28:27",
+    "summary": "The session involved a user requesting project details, with the assistant attempting to clarify the user's intent behind ambiguous messages in Telugu and another language. The assistant considered various options to assist the user, including calendar management and information retrieval, and prepared to respond in the user's preferred language."
+  },
+  {
+    "session_id": "live-session-tnsnw0z",
+    "timestamp": "2026-07-17 19:52:45",
+    "summary": "Session completed successfully."
+  },
+  {
+    "session_id": "live-session-so3985m",
+    "timestamp": "2026-07-17 20:50:06",
+    "summary": "The user inquired about various topics including the weather in Delhi, Google updates, calendar events, and news about Samsung and OpenAI, with the assistant attempting to provide relevant information and assistance. The session concluded with the user thanking the assistant, indicating a satisfactory interaction."
+  },
+  {
+    "session_id": "live-session-som2u5s",
+    "timestamp": "2026-07-17 23:57:07",
+    "summary": "Session completed successfully."
+  },
+  {
+    "session_id": "live-session-g87xz5s",
+    "timestamp": "2026-07-18 10:48:07",
+    "summary": "The user interacted with the assistant in a mix of languages, discussing their name, with the assistant eventually learning and confirming the user's name as Kiran. The conversation also involved the assistant clarifying its actions and capabilities in response to the user's questions and prompts."
+  },
+  {
+    "session_id": "live-session-rvq9rq1",
+    "timestamp": "2026-07-18 11:02:43",
+    "summary": "The session involved testing a personalized Hindi greeting, where the assistant responded to \"\u0939\u0947\u0932\u094b\" with a friendly \"Namaste Kiran\" and offered help. The user interacted with the assistant multiple times, but did not provide any specific needs or requests beyond the initial greetings."
+  },
+  {
+    "session_id": "live-session-dmmisqg",
+    "timestamp": "2026-07-18 21:44:38",
+    "summary": "The session involved attempting to send \"Hi\" messages to Nideesh Mangaluru and Rithik Savers via WhatsApp, with the assistant trying to locate their phone numbers and requesting the user to provide the necessary contact information. The conversation was hindered by language barriers and the assistant's inability to find the required contact details."
+  },
+  {
+    "session_id": "live-session-x7ex5uu",
+    "timestamp": "2026-07-18 21:54:35",
+    "summary": "The user interacted with the assistant in multiple languages, including Hindi and Telugu, to perform various actions such as navigating to WhatsApp web, scrolling down and up, and searching for the world's best footballer. The assistant utilized various tools, including `open_browser_and_search` and `scroll_webpage`, to fulfill the user's requests."
+  },
+  {
+    "session_id": "live-session-2mlcf40",
+    "timestamp": "2026-07-18 22:06:32",
+    "summary": "The user interacted with the assistant in multiple languages, including Malayalam, Kannada, and English, and the assistant responded by attempting to clarify the user's intent and provide assistance. The assistant also executed actions such as opening a browser and searching for a website, and verified the user's name as Kiran."
+  },
+  {
+    "session_id": "live-session-0c1d2t3",
+    "timestamp": "2026-07-23 11:59:16",
+    "summary": "The user inquired about the weather in Delhi, but the assistant was unable to provide the information due to tool timeouts. The conversation then shifted to attempting to open a browser and searching for WhatsApp, with the assistant seeking clarification on ambiguous user inputs in multiple languages."
+  },
+  {
+    "session_id": "live-session-09hqpr1",
+    "timestamp": "2026-07-23 12:02:02",
+    "summary": "The session involved initiating a web search for \"web.whatsapp.com\" and later refining the search query to look for information on \"Sumant GS\" in the context of Information Science and Engineering. The assistant executed the search queries using the `open_browser_and_search` and `search_web` tools to find relevant results."
+  },
+  {
+    "session_id": "live-session-o4bn26r",
+    "timestamp": "2026-07-23 12:05:24",
+    "summary": "The user requested to open a browser and navigate to web.whatsapp.com, and then to search for a contact named \"Suman GS\" and send a \"hi\" message. The assistant initiated the necessary protocols to accomplish these tasks using available tools."
+  },
+  {
+    "session_id": "live-session-jm57k1q",
+    "timestamp": "2026-07-23 12:06:41",
+    "summary": "The user greeted the assistant and requested to send a \"Hi\" message to Rithik Savers on WhatsApp. The assistant confirmed the contact and prepared to send the message, but the user repeated the request in a mix of languages, possibly due to a communication issue."
+  },
+  {
+    "session_id": "live-session-0wxsyaw",
+    "timestamp": "2026-07-23 12:13:31",
+    "summary": "The user attempted to send a \"hi\" message to Suman GS on WhatsApp, but encountered an issue with the message not sending correctly. The user and assistant engaged in a conversation to clarify and potentially resolve the problem with the message."
+  },
+  {
+    "session_id": "live-session-z2auxc5",
+    "timestamp": "2026-07-23 12:36:51",
+    "summary": "The user initiated a conversation with a greeting, and the assistant prepared to offer assistance, particularly with a \"book a flight\" request. The assistant identified `open_browser_and_search` as the most suitable tool for this task and planned to refine the search query based on the user's specific travel needs."
+  },
+  {
+    "session_id": "live-session-ktlpshw",
+    "timestamp": "2026-07-23 12:37:16",
+    "summary": "The session involved a Hindi phrase with unclear context, prompting a need for clarification on the referents of \"it\" and \"there\". The plan is to request more information from the user to understand the specific situation before proceeding with analysis."
+  },
+  {
+    "session_id": "live-session-ku2azye",
+    "timestamp": "2026-07-23 12:40:59",
+    "summary": "The user interacted with the assistant in multiple languages, and the assistant attempted to send a WhatsApp message with the content \"eMoolya mArkeTing\" to a recipient. The assistant ultimately identified the recipient as \"moolya IT\" and initiated the message delivery process using the `whatsapp_send_message` tool."
+  },
+  {
+    "session_id": "live-session-obkzygw",
+    "timestamp": "2026-07-23 13:10:00",
+    "summary": "The user initiated a conversation and requested to send a \"hi\" message to Suman GS on WhatsApp, which was executed. The conversation continued with the user sending additional messages in Hindi, but no new actions were taken beyond the initial WhatsApp message."
+  },
+  {
+    "session_id": "live-session-g8bpszj",
+    "timestamp": "2026-07-23 13:12:02",
+    "summary": "The user initiated a conversation with a greeting, and the assistant prepared to offer assistance, potentially related to sending WhatsApp messages. No specific actions or topics were discussed beyond the initial greeting."
+  },
+  {
+    "session_id": "live-session-9yudzjw",
+    "timestamp": "2026-07-23 13:37:41",
+    "summary": "The user greeted the assistant and attempted to send a \"hi\" message to \"Moulya IIT\" on WhatsApp, but the assistant lacked sufficient contact details to proceed. The assistant was unable to send the message due to unclear or missing contact information."
+  },
+  {
+    "session_id": "live-session-p8ds9eh",
+    "timestamp": "2026-07-23 13:41:03",
+    "summary": "The user attempted to send an offensive message to Rithik on WhatsApp, but the assistant declined the request due to safety policy violations. The assistant then helped the user send a revised, polite message to Rithik, greeting him and inquiring about his lunch."
+  },
+  {
+    "session_id": "live-session-nyd7t9k",
+    "timestamp": "2026-07-23 15:47:52",
+    "summary": "The user interacted with the assistant in multiple languages, requesting to send a message to \"Suman GS\" and navigate to the main page. The assistant executed various actions, including opening WhatsApp Web and navigating to the main page, to fulfill the user's requests."
+  },
+  {
+    "session_id": "live-session-byr6oqo",
+    "timestamp": "2026-07-24 01:34:10",
+    "summary": "The session involved accessing the user's calendar data to retrieve meeting schedule information and summarizing upcoming meetings. The conversation also shifted to acquiring weather data, initially for Bangalore and then for Kolkata, using the `get_live_weather` tool to provide current weather conditions."
+  },
+  {
+    "session_id": "live-session-pey3p0u",
+    "timestamp": "2026-07-24 04:44:35",
+    "summary": "Session completed successfully."
+  },
+  {
+    "session_id": "live-session-1o3wm82",
+    "timestamp": "2026-07-24 10:20:46",
+    "summary": "The user attempted to initiate a conversation in Hindi, then requested to send a \"hi\" message to someone named Sumanth on WhatsApp. No message was sent as the conversation was limited to this text-based platform."
+  },
+  {
+    "session_id": "live-session-zyz8xfn",
+    "timestamp": "2026-07-24 10:23:35",
+    "summary": "The user requested to open the browser and send a high message to someone in WhatsApp for the month. No actions were taken or items scheduled as the conversation ended with the request."
+  },
+  {
+    "session_id": "live-session-rc9ydhn",
+    "timestamp": "2026-07-24 15:12:42",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-un6vhag",
+    "timestamp": "2026-07-24 15:34:46",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-dx7ig0f",
+    "timestamp": "2026-07-24 15:42:17",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-4hbufne",
+    "timestamp": "2026-07-24 20:10:08",
+    "summary": "The user initiated a conversation with a greeting. No specific topics or actions were discussed in this brief exchange."
+  },
+  {
+    "session_id": "live-session-peymj9x",
+    "timestamp": "2026-07-24 20:13:03",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-uctxwax",
+    "timestamp": "2026-07-24 22:53:33",
+    "summary": "The user inquired about their name and was informed it is Kiran. No further actions or discussions took place in the session."
+  },
+  {
+    "session_id": "live-session-pcnh3sr",
+    "timestamp": "2026-07-24 22:55:33",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this brief exchange."
+  },
+  {
+    "session_id": "live-session-73zmh4l",
+    "timestamp": "2026-07-24 22:56:49",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this brief exchange."
+  },
+  {
+    "session_id": "live-session-tscajkx",
+    "timestamp": "2026-07-24 22:58:03",
+    "summary": "The user initiated a conversation with a greeting, and the assistant responded with a greeting and an offer to assist. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-ikc9up3",
+    "timestamp": "2026-07-24 23:09:15",
+    "summary": "The user initiated a conversation and inquired about their name, which was identified as Kiran. No specific actions or tasks were discussed or scheduled during the session."
+  },
+  {
+    "session_id": "live-session-79ire2l",
+    "timestamp": "2026-07-25 00:06:50",
+    "summary": "Kiran inquired about various topics, including news about Google, the weather in Bangalore and Chennai, and their personal preferences. The assistant provided information on the weather and Kiran's preferences, but encountered errors when attempting to retrieve news about Google."
+  },
+  {
+    "session_id": "soak-session-1",
+    "timestamp": "2026-07-27 20:49:42",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "soak-session-2",
+    "timestamp": "2026-07-27 20:49:45",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "soak-session-3",
+    "timestamp": "2026-07-27 20:49:48",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "soak-session-4",
+    "timestamp": "2026-07-27 20:49:52",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "soak-session-5",
+    "timestamp": "2026-07-27 20:49:57",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this brief introduction."
+  },
+  {
+    "session_id": "soak-session-6",
+    "timestamp": "2026-07-27 20:50:05",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "soak-session-7",
+    "timestamp": "2026-07-27 20:50:12",
+    "summary": "The user and assistant exchanged greetings, initiating a conversation. No specific topics or actions were discussed in this initial exchange."
+  },
+  {
+    "session_id": "live-session-9pfqibu",
+    "timestamp": "2026-07-27 20:54:14",
+    "summary": "The user inquired about the nighttime weather and provided their location as India, but not a specific city. The assistant provided the current weather forecast for Mumbai, India, as a reference point."
+  },
+  {
+    "session_id": "live-session-977xxxi",
+    "timestamp": "2026-07-30 11:48:57",
+    "summary": "Kiran introduced themselves and inquired about their preferences, project, and calendar events, with the assistant providing information on scheduled events but lacking access to stored memory for other details. The conversation also touched on attempting to retrieve Google's latest news, with the assistant eventually suggesting Google News as a resource."
+  }
+]
