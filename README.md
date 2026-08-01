@@ -1,4 +1,4 @@
-# 🎙️ Chief of Agents — Voice-First Personal AI Agent
+#  Chief of Agents - Voice-First Personal AI Agent
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
@@ -9,7 +9,7 @@ A production-grade, voice-first personal AI assistant framework designed to demo
 
 ---
 
-## 🌟 Architecture Overview
+##  Architecture Overview
 
 The system uses a **tiered model routing architecture** to balance low latency, high reasoning quality, and cost efficiency. Simple queries are handled directly or routed to fast triage models, while complex tasks trigger RAG context assembly, multi-step tool execution, or multi-layer memory updates.
 
@@ -49,23 +49,23 @@ flowchart TD
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 🎧 **Low-Latency Streaming Voice**: Real-time full-duplex speech-to-speech engine using Deepgram (STT) and Cartesia (TTS) over WebRTC and WebSockets, with built-in fallbacks for OpenAI GPT-4o Realtime API and Gemini Live API.
-- 🔀 **Tiered Model Routing**: Lowers latency and token costs by routing incoming requests through a fast triage model (Llama 3.1 8B) before invoking heavy reasoning models (Llama 3.3 70B).
-- 📚 **Personal Knowledge RAG**: Ingests personal `.txt` and markdown documents into ChromaDB vector store for precise, zero-shot context retrieval.
-- 🧠 **Multi-Layer Memory System**:
+-  **Low-Latency Streaming Voice**: Real-time full-duplex speech-to-speech engine using Deepgram (STT) and Cartesia (TTS) over WebRTC and WebSockets, with built-in fallbacks for OpenAI GPT-4o Realtime API and Gemini Live API.
+-  **Tiered Model Routing**: Lowers latency and token costs by routing incoming requests through a fast triage model (Llama 3.1 8B) before invoking heavy reasoning models (Llama 3.3 70B).
+-  **Personal Knowledge RAG**: Ingests personal `.txt` and markdown documents into ChromaDB vector store for precise, zero-shot context retrieval.
+-  **Multi-Layer Memory System**:
   - **Working Memory**: In-process or Redis session state.
   - **Episodic Memory**: Automatically generates post-session structured summaries.
   - **Semantic Memory**: Stores durable facts and user preferences.
   - **Procedural Memory**: Manages execution routines and tool workflows.
-- 🛠️ **Tool Authorization & Execution Engine**: Integrates external tools (SQLite Calendar management, Web search/browser automation) with safety authorization policies and pending approval state handling.
-- 🧪 **Evals & Benchmark Suite**: Includes evaluation dataset (`tests/eval_dataset.json`) and automated runner (`scripts/run_evals.py`) to measure routing accuracy, retrieval precision@k, cost/token metrics, and response latency.
-- 📊 **Interactive Live Visualizer**: Custom frontend web dashboard (`visualizer/`) displaying real-time audio waveforms, active pipeline logs, tool invocation status, and system metrics.
+-  **Tool Authorization & Execution Engine**: Integrates external tools (SQLite Calendar management, Web search/browser automation) with safety authorization policies and pending approval state handling.
+-  **Evals & Benchmark Suite**: Includes evaluation dataset (`tests/eval_dataset.json`) and automated runner (`scripts/run_evals.py`) to measure routing accuracy, retrieval precision@k, cost/token metrics, and response latency.
+-  **Interactive Live Visualizer**: Custom frontend web dashboard (`visualizer/`) displaying real-time audio waveforms, active pipeline logs, tool invocation status, and system metrics.
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```text
 Chief_of_agents/
@@ -167,7 +167,7 @@ The server will initialize the pre-warmed Chroma embeddings and mount WebSockets
 
 ---
 
-## 🧪 Testing & Interactive Interfaces
+##  Testing & Interactive Interfaces
 
 ### Chat via Command Line (CLI)
 
@@ -200,6 +200,6 @@ The script evaluates:
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
